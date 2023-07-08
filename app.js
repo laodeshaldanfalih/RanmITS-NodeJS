@@ -10,3 +10,11 @@ app.use(express.static("public"));
 
 // monggose db
 mongoose.connect('mongodb+srv://admin-shaldan:admin123@cluster0.cpnwcn2.mongodb.net/RanmITSDB');
+
+app.get("/", (req,res)=>{
+    res.render("homepage");
+});
+
+app.listen(3000,()=>{
+    console.log("Running app on port 3000");
+})
