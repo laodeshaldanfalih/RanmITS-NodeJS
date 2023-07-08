@@ -1,0 +1,425 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #F9FAFB;
+    align-items: center;
+    flex-direction: column;
+}
+
+p{
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+}
+.navbar {
+    height: 77.23px;
+    width: 375px;
+    background-color: ghostwhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-title {
+    margin: 24px;
+    width: 106.61px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .navbar .title {
+    color: #1C64F2;
+    font-size: 14.99px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.humberger-menu{
+    margin: 24px;
+}
+
+.homepage{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shield {
+    margin-top: 24px;
+}
+
+.content-1{
+    height: 259px;
+    width: 327px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-1-title{
+    margin: 0px;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+span{
+    margin: 0px;
+    color: #1C64F2;
+}
+
+.content-1-body{
+    color: #8E8E8E;
+    margin: 0px;
+    margin-top: 16px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.laporkan-kehilangan-button{
+    margin: 0px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    width: 235px;
+    height: 44px;
+    background-color: #1C64F2;
+    border-radius: 8px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.laporkan-kehilangan-button > p{
+    margin: 0px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.announcement {
+    margin-top: 64px;
+    border: 1px solid #A4CAFE;
+    background-color: #EBF5FF;
+    border-radius: 8px;
+    width: 327px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+}
+
+.announcement > img {
+    margin: 24px;
+    width: 35px;
+    height: 35px;
+}
+
+.announcement > div {
+    margin-top: 24px;
+    width: 227px;
+    height: 72px;
+}
+
+.announcement p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1E429F;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.content-2 {
+    margin-top: 64px;
+    height: 336px;
+    width: 327px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-2 .title-wrap {
+    height: 119px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-2 .title-wrap .title{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.content-2 .title-wrap .sub-title{
+    margin: 0;
+    font-size: 12px;
+    color: #8E8E8E;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+ .content-2 > .data-kejadian-card {
+    width: 327px;
+    height: 185px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.content-2 > .data-kejadian-card .title{
+    margin: 16px;
+    margin-bottom: 0px;
+    width: 295px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-2 > .data-kejadian-card .title-text{
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8E8E8E;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.content-2 > .data-kejadian-card .date{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.content-2 > .data-kejadian-card .sub-title{
+    margin: 16px;
+    margin-top: 24px;
+    width: 295px;
+    height: 79px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .jumlah-kejadian-box {
+    width: 124px;
+    height: 79px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-image: linear-gradient(to top right, #0466C8, #4387CA);
+}
+
+.jumlah-kejadian-box p {
+    margin: 0;
+    margin-left: 12px;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.jumlah-kejadian-box .case-number {
+    margin: 0;
+    margin-left: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.content-3 .title {
+    margin: 0;
+    margin-top: 32px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+}
+
+.category {
+    display: grid;
+    grid-template-columns: 76px 76px 76px;
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+    height: 30px;
+}
+.category  p {
+    margin: 0px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.category .semua {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 24px;
+    color: #D1D5DB;
+}
+
+.category .semua:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    background-color: #1C64F2;
+    border-radius: 24px;
+    color: white;
+}
+
+
+
+.category .motor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 24px;
+    color: #D1D5DB;
+}
+
+.category .motor:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    background-color: #1C64F2;
+    border-radius: 24px;
+    color: white;
+}
+
+.category  .mobil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 24px;
+    color: #D1D5DB;
+}
+
+.category  .mobil:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    height: 100%;
+    background-color: #1C64F2;
+    border-radius: 24px;
+    color: white;
+}
+
+.category p {
+    margin: 0px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.laporan-kehilangan-card {
+    margin-top: 16px;
+    width: 327px;
+    height: 418px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.laporan-kehilangan-card .gambar-motor-beat {
+    border-radius: 12px 12px 0px 0px;
+    width: 100%;
+    height: 170px;
+}
+
+.laporan-kehilangan-card .informasi-kendaraan {
+    height: 156px;
+    width: 187px;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.laporan-kehilangan-card .informasi-kendaraan > .plat-nomor{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details{
+    width: 187px;
+    height: 118px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.laporan-kehilangan-card .details{
+    height: 34px;
+    width: 181px;
+    display: grid;
+    grid-template-columns: 20px auto;
+    grid-template-rows: auto auto;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details > .details > .tag{
+    margin: 0px;
+    width: 14px;
+    height: 14px;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details  .details  .deskripsi-title{
+    margin: 0px;
+    font-size: 10px;
+    color: #8E8E8E;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details  .details  .isi-deskripsi{
+    grid-column: span 2;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #575757;
+}
+
+.laporan-kehilangan-card .tombol-hubungi-pemilik {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    height: 36px;
+    width: 152px;
+}
+
+
+
+

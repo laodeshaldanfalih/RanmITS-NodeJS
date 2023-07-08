@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/laporan-kehilangan-page.css">
+    <title>RanmITS</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="/public/images/x.png" alt="" width="24px" height="24px">
+        <p>Lapor Kehilangan</p>
+    </div>
+    <div class="body">
+        <p class="title">Data Kendaraan & Pemilik</p>
+        <div class="form">
+            <form action="">
+                <p>No. Handphone Pelapor</p>
+                <input type="text" placeholder="Masukkan nomor handphone">
+            </form>
+            <form action="">
+                <p>Jenis Kendaraan</p>
+                <select name="cars" id="cars">
+                    <option value="volvo">Motor</option>
+                    <option value="saab">Mobil</option>
+                </select>
+            </form>
+            <form action="">
+                <p>Model Kendaraan</p>
+                <input type="text" placeholder="Masukkan model kendaraan">
+            </form>
+            <form action="">
+                <p>Tahun Keluaran</p>
+                <input type="text" placeholder="Masukkan tahun keluaran">
+            </form>
+            <form action="">
+                <p>Warna Kendaraan</p>
+                <input type="text" placeholder="Masukkan warna kendaraan">
+            </form>
+            <form action="">
+                <p>Plat Nomor Kendaraan</p>
+                <input type="text" placeholder="Masukkan plat nomor kendaraan">
+            </form>
+            <form action="">
+                <p>Foto Kendaraan</p>
+                <div class="foto-kendaraan-field">
+                    <img src="/public/images/cloud-upload.png" alt="" width="36px" height="36px">
+                    <p class="instruction">Click to upload <span>or drag and drop</span></p>
+                    <p class="format">SVG, PNG, JPG</p>
+                </div>
+            </form>
+        </div>
+        <p class="title">Lokasi & Waktu Kejadian</p>
+        <div class="form">
+            <form action="">
+                <p>Waktu Kejadian</p>
+                <input type="date" placeholder="Masukkan waktu kejadian">
+            </form>
+            <form action="">
+                <p>Lokasi Kejadian</p>
+                <input type="text" placeholder="Masukkan lokasi kejadian">
+            </form>
+        </div>
+        <p class="title">Deskripsi Pendukung</p>
+        <div class="form">
+            <div class="additional-information">
+                <img src="/public/images/information-circle-blue.png" alt="" width="24px" height="24px">
+                <p>Deskripsi dapat berupa hal spesifik yang ada pada kendaraan anda seperti stiker, part modif, ataupun
+                    bekas tabrakan.</p>
+            </div>
+            <div class="deskripsi-pendukung-form">
+                <textarea class="textarea" name="" id="" cols="30" rows="10" placeholder="Tulis Deskripsi"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="buat-laporan-button">
+            <p>Buat Laporan</p>
+        </div>
+    </div>
