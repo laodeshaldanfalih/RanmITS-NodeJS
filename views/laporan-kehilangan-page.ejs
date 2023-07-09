@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/laporan-kehilangan-page.css">
+    <title>RanmITS</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/" style="text-decoration: none;"><img src="/images/x.png" alt="" width="24px" height="24px"></a>
+        <p>Lapor Kehilangan</p>
+    </div>
+    <div class="body">
+        <form action="/laporan-kehilangan-page" class="form" method="post">
+            <h1 class="title">Data Kendaraan & Pemilik</h1>
+            <p>No. Handphone Pelapor</p>
+            <input type="text" placeholder="Masukkan nomor handphone" name="handphoneNumber">
+            <p>Jenis Kendaraan</p>
+            <select name="cars" id="cars" name="vType">
+                <option value="volvo">Motor</option>
+                <option value="saab">Mobil</option>
+            </select>
+            <p>Model Kendaraan</p>
+            <input type="text" placeholder="Masukkan model kendaraan" name="vModel">
+            <p>Tahun Keluaran</p>
+            <input type="text" placeholder="Masukkan tahun keluaran" name="vYears">
+            <p>Warna Kendaraan</p>
+            <input type="text" placeholder="Masukkan warna kendaraan" name="vColor">
+            <p>Plat Nomor Kendaraan</p>
+            <input type="text" placeholder="Masukkan plat nomor kendaraan" name="vNumber">
+            <p>Foto Kendaraan</p>
+            <div class="foto-kendaraan-field">
+                <!-- <input type="file"> -->
+                <img src="/images/cloud-upload.png" alt="" width="36px" height="36px">
+                <label class="instruction"> <input type="file" name="vPhoto"> Click to upload</label>
+                <p class="format">SVG, PNG, JPG</p>
+            </div>
+            <h1 class="title">Lokasi & Waktu Kejadian</h1>
+            <p>Waktu Kejadian</p>
+            <input type="date" placeholder="Masukkan waktu kejadian" name="lostTime">
+            <p>Lokasi Kejadian</p>
+            <input type="text" placeholder="Masukkan lokasi kejadian" name="lostLocation">
+            <h1 class="title">Deskripsi Pendukung</h1>
+            <div class="additional-information">
+                <img src="/images/information-circle-blue.png" alt="" width="24px" height="24px">
+                <h1 class="text">Deskripsi dapat berupa hal spesifik yang ada pada kendaraan anda seperti stiker, part
+                    modif,
+                    ataupun bekas tabrakan.</h1>
+            </div>
+            <textarea class="deskripsi-pendukung-form" name="description" cols="30" rows="10"
+                placeholder="Tulis Deskripsi"></textarea>
+            <button class="buat-laporan-button" type="submit">
+                <p>Buat Laporan</p>
+            </button>
+        </form>
+    </div>
