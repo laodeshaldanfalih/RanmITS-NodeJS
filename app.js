@@ -38,3 +38,7 @@ app.post("/laporan-kehilangan-page", (req,res)=>{
     console.log(vehicleData);
     res.redirect("/");
 });
+
+app.get("/tentang-produk-page", (req,res)=>{
+    res.render("tentang-produk-page");
+});

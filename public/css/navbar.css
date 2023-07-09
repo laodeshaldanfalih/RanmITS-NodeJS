@@ -1,0 +1,120 @@
+body{
+  display: flex;
+  justify-content: center;
+  background-color: #F9FAFB;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  top: 0;
+}
+
+p{
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+}
+
+.navbar {
+    margin: 0;
+    height: 77.23px;
+    width: 375px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-title {
+    margin: 24px;
+    width: 106.61px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .navbar .title {
+    color: #0466C8;
+    font-size: 14.99px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.humberger-menu{
+    margin: 24px;
+    color: #1C64F2;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #F9FAFB;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    
+  }
+
+  .sidenav .closebox {
+    height: 76px;
+    width: 305px;
+    background-color: white;
+    display: block;
+    position: absolute;
+    top: 0;
+
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    right: 0;
+    margin: 24px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .sidenav .menu {
+    width: 256px;
+    height: 304px;
+    position: absolute;
+    right: 24px;
+    top: 93px;
+    display: flex;
+    flex-direction:  column;
+    align-items: end;
+  }
+
+  .sidenav .sub-menu {
+    height: 76px;
+    width: 256px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  
+  .sidenav a {
+    color: #4B5563;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .sidenav img {
+    width: 28px;
+    height: 28px;
+    margin-left: 16px;
+    margin-right: 12px;
+  }
+
+  .sidenav a:hover {
+    color: #1C64F2;
+  }
