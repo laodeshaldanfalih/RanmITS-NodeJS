@@ -80,7 +80,6 @@ p{
 
   .sidenav .menu {
     width: 256px;
-    height: 304px;
     position: absolute;
     right: 24px;
     top: 93px;
@@ -97,6 +96,37 @@ p{
     justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid #E5E7EB;
+  }
+
+  .sidenav .daftar-akun-button {
+    margin-top: 200px;
+    height: 44px;
+    width: 256px;
+    background-color: #1C64F2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidenav .daftar-akun-button > p{
+    color: white;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .sidenav .masuk-akun-button{
+    height: 44px;
+    width: 256px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidenav .masuk-akun-button > p{
+    color: #1C64F2;
+    font-size: 14px;
+    text-align: center;
   }
   
   .sidenav a {

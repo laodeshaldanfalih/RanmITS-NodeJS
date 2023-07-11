@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/navbarx.css">
+  <link rel="stylesheet" href="/css/loginpage.css">
+  <title>RanmITS</title>
+</head>
+
+<body>
+  <%- include('partials/navbarx') -%>
+  <div class="body">
+    <p class="title">Login</p>
+    <%if(unmatchedAccount == true){%>
+    <div class="alert">
+      <p>*Alamat email atau password salah</p>
+    </div>
+    <% } %>
+    <form action="/" method="post">
+      <p>Alamat Email</p>
+      <input type="text" placeholder="Masukkan alamat email" name="email">
+      <p>Password</p>
+      <input type="password" placeholder="Masukkan password" name="password">
+      <button class="login-button" type="submit">
+        <p>Login</p>
+      </button>
+    </form>
+    <p class="footer">Belum punya akun? <a href="/register">Buat akun</a></p>
+  </div>
+</body>
+
+</html>

@@ -2,58 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/navbar.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>RanmITS</title>
+  <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="logo-title">
-            <img src="images/logo.png" alt="" width="29.34px" height="29.23px">
-            <p class="title">RanmITS</p>
-        </div>
-        <div id="mySidenav" class="sidenav">
-            <div class="closebox">
-                <img src="/images/x.png" alt="" class="closebtn" onclick="closeNav()">
-            </div>
-            <div class="menu">
-                <div class="sub-menu">
-                    <a href="/">Beranda</a>
-                    <img src="/images/home.png" alt="">
-                </div>
-                <div class="sub-menu">
-                    <a href="/laporan-kehilangan-page">Lapor Kehilangan</a>
-                    <img src="/images/exclamation-circle-grey.png" alt="">
-                </div>
-                <div class="sub-menu">
-                    <a href="/panggil-petugas-page">Panggil Petugas</a>
-                    <img src="/images/status-online.png" alt="">
-                </div>
-                <div class="sub-menu">
-                    <a href="/tentang-produk-page">Tentang Produk</a>
-                    <img src="/images/information-circle.png" alt="">
-                </div>
-            </div>
-        </div>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="humberger-menu">&#9776;</span>
+  <div class="navbar">
+    <div class="logo-title">
+      <img src="images/logo.png" alt="" width="29.34px" height="29.23px">
+      <p class="title">RanmITS</p>
     </div>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "305px";
-            document.getElementsByClassName('homepage').classList.add("body-grey");
-        }
-
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("hompage").style.backgroundColor = "#FFFFFF;";
-        }
-    </script>
+    <div id="mySidenav" class="sidenav">
+      <div class="closebox">
+        <img src="/images/x.png" alt="" class="closebtn" onclick="closeNav()">
+      </div>
+      <div class="menu">
+        <div class="sub-menu">
+          <a href="/home">Beranda</a>
+          <img src="/images/home.png" alt="">
+        </div>
+        <div class="sub-menu">
+          <a href="/laporan-kehilangan-page">Lapor Kehilangan</a>
+          <img src="/images/exclamation-circle-grey.png" alt="">
+        </div>
+        <div class="sub-menu">
+          <a href="/panggil-petugas-page">Panggil Petugas</a>
+          <img src="/images/status-online.png" alt="">
+        </div>
+        <div class="sub-menu">
+          <a href="/tentang-produk-page">Tentang Produk</a>
+          <img src="/images/information-circle.png" alt="">
+        </div>
+        <%if(loggedIn == true){%>
+        <div class="sub-menu">
+          <a href="/profile"><%=nama%></a>
+          <img src="/images/user-circle.png" alt="">
+        </div>
+        <!-- <a href="/register">
+            <div class="daftar-akun-button">
+              <p>Daftar akun</p>
+            </div>
+          </a> -->
+        <%}else{%>
+        <a href="/register">
+          <div class="daftar-akun-button">
+            <p>Daftar akun</p>
+          </div>
+        </a>
+        <a href="/">
+          <div class="masuk-akun-button">
+            <p>Masuk akun</p>
+          </div>
+        </a>
+        <%}%>
+      </div>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="humberger-menu">&#9776;</span>
+  </div>
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "305px";
+      document.getElementsByClassName('homepage').classList.add("body-grey");
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("hompage").style.backgroundColor = "#FFFFFF;";
+    }
+  </script>
 </body>
 
 </html>

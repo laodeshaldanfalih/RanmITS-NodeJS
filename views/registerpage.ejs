@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/navbarx.css">
+  <link rel="stylesheet" href="/css/registerpage.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <%- include('partials/navbarx') -%>
+  <div class="body">
+    <p class="title">Buat akun</p>
+    <form action="/register" method="post">
+      <p>Alamat Email</p>
+      <input type="email" placeholder="Masukkan alamat email" name="email">
+      <% if(existedEmail===true){ %>
+      <p class="alert">*Alamat email sudah digunakan</p>
+      <% } %>
+      <p>Nama anda</p>
+      <input type="text" placeholder="Masukkan nama anda" name="nama">
+      <p>Password</p>
+      <input type="password" placeholder="Masukkan password" name="password">
+      <p>Konfirmasi Password</p>
+      <input type="password" placeholder="Masukkan password" name="passwordConfirmation">
+      <% if(unmatchedPassword===true){ %>
+      <p class="alert">*Password tidak sama</p>
+      <% } %>
+      <button class="login-button" type="submit">
+        <p>Buat akun</p>
+      </button>
+    </form>
+    <p class="footer">Sudah punya akun? <a href="/">Login</a></p>
+  </div>
+
+</body>
+
+</html>
