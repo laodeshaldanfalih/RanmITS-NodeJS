@@ -15,10 +15,23 @@ mongoose.connect('mongodb://127.0.0.1:27017/RanmITSDB');
 const userSchema = new mongoose.Schema({
     email: String,
     nama: String,
-    password: String
+    password: String,
+});
+const lostVehicleSchema = new mongoose.Schema({
+    handphoneNumber : Number,
+    vModel: String,
+    vYears: Number,
+    vColor: String,
+    vNumber: String,
+    vPhoto: String,
+    lostTime: Date,
+    lostLocation: String,
+    description: String,
+    user: userSchema,
 });
 // db model
 const User = new mongoose.model("User", userSchema);
+const LostVehicle = new mongoose.model("LostVehicle", lostVehicleSchema);
 
 // variabel
 var existedEmail;
@@ -72,18 +85,22 @@ app.post('/',(req,res)=>{
             });
 
             app.post("/laporan-kehilangan-page", (req,res)=>{
-                const vehicleData = {
-                    handphoneNumber : req.body.handphoneNumber,
-                    vModel: req.body.vModel,
-                    vYears: req.body.vYears,
-                    vColor: req.body.vColor,
-                    vNumber: req.body.vNumber,
-                    vPhoto: req.body.vPhoto,
-                    lostTime: req.body.lostTime,
-                    lostLocation: req.body.lostLocation,
-                    description: req.body.description
-                }
-                console.log(vehicleData);
+                User.findOne({_id: id}).then((index)=>{
+                    const lostVehicle = new LostVehicle({
+                        handphoneNumber : req.body.handphoneNumber,
+                        vType: req.body.vType,
+                        vModel: req.body.vModel,
+                        vYears: req.body.vYears,
+                        vColor: req.body.vColor,
+                        vNumber: req.body.vNumber,
+                        vPhoto: req.body.vPhoto,
+                        lostTime: req.body.lostTime,
+                        lostLocation: req.body.lostLocation,
+                        description: req.body.description,
+                        user: index
+                    });
+                    lostVehicle.save();
+                });
                 res.redirect("/home");
             });
 
