@@ -80,6 +80,7 @@ app.get('/', (req,res)=>{
     res.render('loginpage',{navbarTitle: "Login", unmatchedAccount:unmatchedAccount});
     matchedAccount = false;
     unmatchedAccount = false;
+    console.log(matchedAccount);
 });
 
 app.post('/',(req,res)=>{

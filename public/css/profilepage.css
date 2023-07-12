@@ -29,6 +29,10 @@ text-align: left;
     font-weight: 600;
 }
 
+.profile-title a {
+    text-decoration: none;
+}
+
 .profile-title button {
     width: 129px;
     height: 30px;
