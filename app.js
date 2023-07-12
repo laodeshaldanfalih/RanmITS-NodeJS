@@ -154,7 +154,6 @@ app.post('/',(req,res)=>{
                 lostVehicle.save().then(()=>{
                     res.redirect('/success');
                 });
-               
             });
 
             //tentang-produk-page
@@ -167,6 +166,16 @@ app.post('/',(req,res)=>{
             // success page for uploading lost vehicle document
             app.get('/success',(req,res)=>{
                 res.render("successpage");
+            });
+
+            // delete lost vehicle data from profile page
+            app.post('/deleteLostVehicle',(req,res)=>{
+                var deletedId = req.body.delete;
+                LostVehicle.findOneAndDelete({_id: deletedId}).then((index)=>{
+                    console.log("id: "+deletedId+" has been deleted");
+                    res.redirect('/profile')
+                });
+                
             });
 
         }else{
@@ -197,7 +206,7 @@ app.post('/register', async (req,res)=> {
                 }
             });
         });
-    
+        
         if(existedEmail == false){
             const user = new User({
                 email: email,
@@ -213,8 +222,6 @@ app.post('/register', async (req,res)=> {
         unmatchedPassword = true;
     }
 });
-
-
 
 app.listen(3000,()=>{
     console.log("Running app on port 3000");

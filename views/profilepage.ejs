@@ -27,18 +27,17 @@
     <p class="title">Data Akun</p>
     <p>Nama</p>
     <div>
-      <p>Shaldan Falih</p>
+      <p><%=user.nama%></p>
     </div>
     <p>Alamat Email</p>
     <div>
-      <p>shaldan@gmail.com</p>
+      <p><%=user.email%></p>
     </div>
   </div>
   <div class="kehilangan-card">
     <p class="title-2">Laporan Anda</p>
     <%lostVehicle.forEach((index)=>{%>
     <div class="laporan-kehilangan-card">
-      <!-- <img class="gambar-motor-beat" src="/images/motor_beat.png" alt=""> -->
       <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
                     <%=index.vPhoto.data.toString('base64')%>" />
       <div class="informasi-kendaraan">
@@ -69,7 +68,12 @@
           </div>
         </div>
       </div>
-      <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
+      <form action="/deleteLostVehicle" method="post">
+        <input type="hidden" value="<%=index._id%>" name="delete">
+        <button class="tombol-hubungi-pemilik" type="submit">
+          <img src="/images/deleteButton.png" alt="" width="152px" height="36px">
+        </button>
+      </form>
     </div>
     <%});%>
   </div>
