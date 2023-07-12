@@ -63,7 +63,6 @@ var unmatchedPassword;
 var matchedAccount;
 var unmatchedAccount;
 var id;
-var loggedIn = false;
 
 // function
 function dateFormat(dates){
@@ -94,24 +93,18 @@ app.post('/',(req,res)=>{
             }
         });
         if(matchedAccount == true){
-            loggedIn = true;
             res.redirect('/home');
 
             // homepage
             app.get("/home", (req,res)=>{
-                if(loggedIn == true){
-                    User.findOne({_id: id}).then((user)=>{
-                        LostVehicle.find({userId: id}).then((index)=>{
-                            res.render("homepage",{
-                                loggedIn: loggedIn,
-                                user: user,
-                                lostVehicle: index,
-                            });
+                User.findOne({_id: id}).then((user)=>{
+                    LostVehicle.find({userId: id}).then((index)=>{
+                        res.render("homepage",{
+                            user: user,
+                            lostVehicle: index,
                         });
                     });
-                }else{
-                    res.render("homepage",{loggedIn:loggedIn});
-                }
+                });
             });
 
             // profile-page
@@ -120,7 +113,6 @@ app.post('/',(req,res)=>{
                 User.findOne({_id: id}).then((user)=>{
                     LostVehicle.find({userId: id}).then((index)=>{
                         res.render("profilepage",{
-                            loggedIn: loggedIn,
                             user: user,
                             lostVehicle: index,
                         });
@@ -160,20 +152,21 @@ app.post('/',(req,res)=>{
                     userId: id
                 });
                 lostVehicle.save().then(()=>{
-                    res.redirect('/home');
+                    res.redirect('/success');
                 });
                
             });
 
             //tentang-produk-page
             app.get("/tentang-produk-page", (req,res)=>{
-                if(loggedIn == true){
-                    User.findOne({_id: id}).then((index)=>{
-                        res.render("tentang-produk-page",{loggedIn: loggedIn,user: index});
-                    });
-                }else{
-                    res.render("tentang-produk-page",{loggedIn:loggedIn});
-                }
+                User.findOne({_id: id}).then((index)=>{
+                    res.render("tentang-produk-page",{user: index});
+                });
+            });
+
+            // success page for uploading lost vehicle document
+            app.get('/success',(req,res)=>{
+                res.render("successpage");
             });
 
         }else{
@@ -220,6 +213,8 @@ app.post('/register', async (req,res)=> {
         unmatchedPassword = true;
     }
 });
+
+
 
 app.listen(3000,()=>{
     console.log("Running app on port 3000");
