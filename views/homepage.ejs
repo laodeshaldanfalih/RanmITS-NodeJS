@@ -83,36 +83,40 @@
           <p>Mobil</p>
         </div>
       </div>
+      <%lostVehicle.forEach((index)=>{%>
       <div class="laporan-kehilangan-card">
         <img class="gambar-motor-beat" src="/images/motor_beat.png" alt="">
         <div class="informasi-kendaraan">
-          <p class="plat-nomor">W 1234 PL</p>
+          <p class="plat-nomor"><%=index.vNumber%></p>
           <div class="informasi-kendaran-details">
             <div class="details">
               <img class="tag" src="/images/tag.png" alt="">
               <p class="deskripsi-title">
                 Deskripsi Kendaraan
               </p>
-              <p class="isi-deskripsi">Honda Beat 115 | Warna Hitam | 2019</p>
+              <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
             </div>
             <div class="details">
               <img class="clock" src="/images/clock.png" alt="">
               <p class="deskripsi-title">
-                Deskripsi Kendaraan
+                Waktu Kejadian
               </p>
-              <p class="isi-deskripsi">Honda Beat 115 | Warna Hitam | 2019</p>
+              <p class="isi-deskripsi">
+                <%=index.lostTime%>
+                , di <%=index.lostLocation%></p>
             </div>
             <div class="details">
               <img class="loc" src="/images/location-marker.png" alt="">
               <p class=" deskripsi-title">
-                Deskripsi Kendaraan
+                Deskripsi Tambahan
               </p>
-              <p class="isi-deskripsi">Honda Beat 115 | Warna Hitam | 2019</p>
+              <p class="isi-deskripsi"><%=index.description%></p>
             </div>
           </div>
         </div>
         <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
       </div>
+      <%});%>
     </div>
     <%- include('partials/footer')-%>
   </div>

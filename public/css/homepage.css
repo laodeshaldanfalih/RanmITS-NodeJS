@@ -369,7 +369,7 @@ span{
 
 .laporan-kehilangan-card .details{
     height: 34px;
-    width: 181px;
+    width: 327px;
     display: grid;
     grid-template-columns: 20px auto;
     grid-template-rows: auto auto;

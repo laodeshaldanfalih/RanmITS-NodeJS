@@ -12,26 +12,28 @@ app.use(express.static("public"));
 // mongoose.connect('mongodb+srv://admin-shaldan:admin123@cluster0.cpnwcn2.mongodb.net/RanmITSDB');
 mongoose.connect('mongodb://127.0.0.1:27017/RanmITSDB');
 //db schema
-const userSchema = new mongoose.Schema({
-    email: String,
-    nama: String,
-    password: String,
-});
 const lostVehicleSchema = new mongoose.Schema({
     handphoneNumber : Number,
+    vType: String,
     vModel: String,
     vYears: Number,
     vColor: String,
     vNumber: String,
     vPhoto: String,
-    lostTime: Date,
+    lostTime: String,
     lostLocation: String,
     description: String,
-    user: userSchema,
+    userId: String
 });
+const userSchema = new mongoose.Schema({
+    email: String,
+    nama: String,
+    password: String,
+});
+
 // db model
-const User = new mongoose.model("User", userSchema);
 const LostVehicle = new mongoose.model("LostVehicle", lostVehicleSchema);
+const User = new mongoose.model("User", userSchema);
 
 // variabel
 var existedEmail;
@@ -40,6 +42,16 @@ var matchedAccount;
 var unmatchedAccount;
 var id;
 var loggedIn = false;
+
+// function
+function dateFormat(dates){
+    let day = dates.toLocaleString('en-us', {weekday: 'long'});
+    let date = dates.getDate();
+    let month = dates.getMonth();
+    let year = dates.getFullYear();
+    let formattedDate = day +", "+date+" "+month+" "+year;
+    return formattedDate;
+}
 
 // login-page
 app.get('/', (req,res)=>{
@@ -65,8 +77,14 @@ app.post('/',(req,res)=>{
             // homepage
             app.get("/home", (req,res)=>{
                 if(loggedIn == true){
-                    User.findOne({_id: id}).then((index)=>{
-                        res.render("homepage",{loggedIn: loggedIn,nama: index.nama});
+                    User.findOne({_id: id}).then((user)=>{
+                        LostVehicle.find({userId: id}).then((index)=>{
+                            res.render("homepage",{
+                                loggedIn: loggedIn,
+                                nama: user.nama,
+                                lostVehicle: index,
+                            });
+                        });
                     });
                 }else{
                     res.render("homepage",{loggedIn:loggedIn});
@@ -76,7 +94,10 @@ app.post('/',(req,res)=>{
             // profile-page
             app.get('/profile', (req,res)=>{
                 console.log(id);
-                res.render('profilepage', {id: id});
+                LostVehicle.find({userId: id}).then((index)=>{
+                    res.render("profilepage",{lostVehicle: index});
+                });
+                
             });
 
             // laporan-kehilangan-page
@@ -85,23 +106,30 @@ app.post('/',(req,res)=>{
             });
 
             app.post("/laporan-kehilangan-page", (req,res)=>{
-                User.findOne({_id: id}).then((index)=>{
-                    const lostVehicle = new LostVehicle({
-                        handphoneNumber : req.body.handphoneNumber,
-                        vType: req.body.vType,
-                        vModel: req.body.vModel,
-                        vYears: req.body.vYears,
-                        vColor: req.body.vColor,
-                        vNumber: req.body.vNumber,
-                        vPhoto: req.body.vPhoto,
-                        lostTime: req.body.lostTime,
-                        lostLocation: req.body.lostLocation,
-                        description: req.body.description,
-                        user: index
-                    });
-                    lostVehicle.save();
+
+                const selectedDate = new Date(req.body.lostTime);
+                const formattedDate = selectedDate.toLocaleDateString('id-ID', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                  }).toString();;
+
+                const lostVehicle = new LostVehicle({
+                    handphoneNumber : req.body.handphoneNumber,
+                    vType: req.body.vType,
+                    vModel: req.body.vModel,
+                    vYears: req.body.vYears,
+                    vColor: req.body.vColor,
+                    vNumber: req.body.vNumber,
+                    vPhoto: req.body.vPhoto,
+                    lostTime: formattedDate,
+                    lostLocation: req.body.lostLocation,
+                    description: req.body.description,
+                    userId: id
                 });
-                res.redirect("/home");
+                lostVehicle.save();
+                res.redirect('/home');
             });
 
             //tentang-produk-page
