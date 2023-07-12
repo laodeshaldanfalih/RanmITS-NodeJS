@@ -17,7 +17,7 @@
 <body>
   <%- include('partials/navbarx') -%>
   <div class="body">
-    <form action="/laporan-kehilangan-page" class="form" method="post">
+    <form action="/laporan-kehilangan-page" class="form" method="post" enctype="multipart/form-data">
       <h1 class="title">Data Kendaraan & Pemilik</h1>
       <p>No. Handphone Pelapor</p>
       <input type="text" placeholder="Masukkan nomor handphone" name="handphoneNumber">
@@ -36,9 +36,8 @@
       <input type="text" placeholder="Masukkan plat nomor kendaraan" name="vNumber">
       <p>Foto Kendaraan</p>
       <div class="foto-kendaraan-field">
-        <!-- <input type="file"> -->
         <img src="/images/cloud-upload.png" alt="" width="36px" height="36px">
-        <label class="instruction"> <input type="file" name="vPhoto"> Click to upload</label>
+        <label class="instruction"> <input type="file" accept="image/*" name="vPhoto"> Click to upload</label>
         <p class="format">SVG, PNG, JPG</p>
       </div>
       <h1 class="title">Lokasi & Waktu Kejadian</h1>

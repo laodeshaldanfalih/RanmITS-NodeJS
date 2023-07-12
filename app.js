@@ -1,16 +1,35 @@
 const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const app = express();
-
+var fs = require('fs');
+var path = require('path');
 app.set('view engine', 'ejs');
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 app.use(express.static("public"));
 
 // monggose db
 // mongoose.connect('mongodb+srv://admin-shaldan:admin123@cluster0.cpnwcn2.mongodb.net/RanmITSDB');
-mongoose.connect('mongodb://127.0.0.1:27017/RanmITSDB');
+mongoose.connect(process.env.MONGO_URL)
+.then(console.log("DB Connected"))
+
+//multer
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+ 
+var upload = multer({ storage: storage });
+
 //db schema
 const lostVehicleSchema = new mongoose.Schema({
     handphoneNumber : Number,
@@ -19,7 +38,10 @@ const lostVehicleSchema = new mongoose.Schema({
     vYears: Number,
     vColor: String,
     vNumber: String,
-    vPhoto: String,
+    vPhoto: {
+        data: Buffer,
+        contentType: String
+    },
     lostTime: String,
     lostLocation: String,
     description: String,
@@ -105,8 +127,7 @@ app.post('/',(req,res)=>{
                 res.render('laporan-kehilangan-page',{navbarTitle: "Lapor Kehilangan"});
             });
 
-            app.post("/laporan-kehilangan-page", (req,res)=>{
-
+            app.post("/laporan-kehilangan-page", upload.single('vPhoto'),(req,res)=>{
                 const selectedDate = new Date(req.body.lostTime);
                 const formattedDate = selectedDate.toLocaleDateString('id-ID', {
                     weekday: 'long',
@@ -122,14 +143,19 @@ app.post('/',(req,res)=>{
                     vYears: req.body.vYears,
                     vColor: req.body.vColor,
                     vNumber: req.body.vNumber,
-                    vPhoto: req.body.vPhoto,
+                    vPhoto: {
+                        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+                        contentType: 'image/png'
+                    },
                     lostTime: formattedDate,
                     lostLocation: req.body.lostLocation,
                     description: req.body.description,
                     userId: id
                 });
-                lostVehicle.save();
-                res.redirect('/home');
+                lostVehicle.save().then(()=>{
+                    res.redirect('/home');
+                });
+               
             });
 
             //tentang-produk-page
