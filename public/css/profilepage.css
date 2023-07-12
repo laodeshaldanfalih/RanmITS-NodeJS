@@ -1,0 +1,171 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #F9FAFB;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    top: 0;
+}
+  
+p{
+margin: 0;
+font-family: 'Poppins', sans-serif;
+text-align: left;
+}
+
+.profile-title{
+    margin-top: 28.77px;
+    width: 327px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+.profile-title .title-1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.profile-title button {
+    width: 129px;
+    height: 30px;
+    background-color: #FDF2F2;
+    border: 1px solid #F8B4B4;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile-title button p {
+    font-size: 12px;
+    font-weight: 500;
+    color: #C81E1E;
+}
+
+.data-akun {
+    width: 327px;
+    height: 188px;
+    display: flex;
+    flex-direction: column;
+}
+.data-akun p {
+    font-size: 14px;
+    font-weight: normal;
+    color: #4B5563;
+}
+
+.data-akun .title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.data-akun div {
+    margin-top: 4px;
+    margin-bottom: 14px;
+    width: 327px;
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid #C9C9C9;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    padding: 12px;
+    justify-content: start;
+    align-items: center;
+}
+
+.kehilangan-card {
+    width: 327px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+.kehilangan-card .title-2 {
+    text-align: start;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.laporan-kehilangan-card {
+    margin-top: 16px;
+    width: 327px;
+    height: 418px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.laporan-kehilangan-card .vehicle-image {
+    border-radius: 12px 12px 0px 0px;
+    width: 100%;
+    height: 170px;
+}
+
+.laporan-kehilangan-card .informasi-kendaraan {
+    height: 156px;
+    width: 187px;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.laporan-kehilangan-card .informasi-kendaraan > .plat-nomor{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details{
+    width: 187px;
+    height: 118px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.laporan-kehilangan-card .details{
+    height: 34px;
+    width: 327px;
+    display: grid;
+    grid-template-columns: 20px auto;
+    grid-template-rows: auto auto;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details > .details > .tag{
+    margin: 0px;
+    width: 14px;
+    height: 14px;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details  .details  .deskripsi-title{
+    margin: 0px;
+    font-size: 10px;
+    color: #8E8E8E;
+}
+
+.laporan-kehilangan-card .informasi-kendaran-details  .details  .isi-deskripsi{
+    grid-column: span 2;
+    margin: 0px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #575757;
+}
+
+.laporan-kehilangan-card .tombol-hubungi-pemilik {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    height: 36px;
+    width: 152px;
+}
+
+

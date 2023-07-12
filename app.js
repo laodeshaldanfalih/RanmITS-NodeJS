@@ -103,7 +103,7 @@ app.post('/',(req,res)=>{
                         LostVehicle.find({userId: id}).then((index)=>{
                             res.render("homepage",{
                                 loggedIn: loggedIn,
-                                nama: user.nama,
+                                user: user,
                                 lostVehicle: index,
                             });
                         });
@@ -116,8 +116,14 @@ app.post('/',(req,res)=>{
             // profile-page
             app.get('/profile', (req,res)=>{
                 console.log(id);
-                LostVehicle.find({userId: id}).then((index)=>{
-                    res.render("profilepage",{lostVehicle: index});
+                User.findOne({_id: id}).then((user)=>{
+                    LostVehicle.find({userId: id}).then((index)=>{
+                        res.render("profilepage",{
+                            loggedIn: loggedIn,
+                            user: user,
+                            lostVehicle: index,
+                        });
+                    });
                 });
                 
             });
@@ -162,7 +168,7 @@ app.post('/',(req,res)=>{
             app.get("/tentang-produk-page", (req,res)=>{
                 if(loggedIn == true){
                     User.findOne({_id: id}).then((index)=>{
-                        res.render("tentang-produk-page",{loggedIn: loggedIn,nama: index.nama});
+                        res.render("tentang-produk-page",{loggedIn: loggedIn,user: index});
                     });
                 }else{
                     res.render("tentang-produk-page",{loggedIn:loggedIn});
@@ -176,18 +182,6 @@ app.post('/',(req,res)=>{
     });
 });
 
-if(loggedIn == true){
-    // homepage
-    app.get("/", (req,res)=>{
-        if(loggedIn == true){
-            User.findOne({_id: id}).then((index)=>{
-                res.render("homepage",{loggedIn: loggedIn,nama: index.nama});
-            });
-        }else{
-            res.render("homepage",{loggedIn:loggedIn});
-        }
-    });
-}
 // register-page
 app.get('/register', (req,res)=>{
     res.render('registerpage',{navbarTitle: "Buat akun", existedEmail: existedEmail, unmatchedPassword: unmatchedPassword});

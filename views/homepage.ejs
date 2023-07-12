@@ -86,7 +86,7 @@
       <%lostVehicle.forEach((index)=>{%>
       <div class="laporan-kehilangan-card">
         <!-- <img class="gambar-motor-beat" src="/images/motor_beat.png" alt=""> -->
-        <img src="data:image/<%=index.vPhoto.contentType%>;base64,
+        <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
                     <%=index.vPhoto.data.toString('base64')%>" />
         <div class="informasi-kendaraan">
           <p class="plat-nomor"><%=index.vNumber%></p>

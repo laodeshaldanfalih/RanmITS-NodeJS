@@ -4,15 +4,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/profilepage.css">
+  <title>RanmITS</title>
 </head>
 
 <body>
-  <%lostVehicle.forEach((index)=>{%>
-  <p>
-    <%= index.description %>
-  </p>
-  <%});%>
+  <%- include('partials/navbar')-%>
+  <div class="profile-title">
+    <p class="title-1">Profil</p>
+    <button>
+      <p>Keluar Akun</p>
+      <img src="/images/logout.png" alt="" width="16px" height="16px">
+    </button>
+  </div>
+  <div class="data-akun">
+    <p class="title">Data Akun</p>
+    <p>Nama</p>
+    <div>
+      <p>Shaldan Falih</p>
+    </div>
+    <p>Alamat Email</p>
+    <div>
+      <p>shaldan@gmail.com</p>
+    </div>
+  </div>
+  <div class="kehilangan-card">
+    <p class="title-2">Laporan Anda</p>
+    <%lostVehicle.forEach((index)=>{%>
+    <div class="laporan-kehilangan-card">
+      <!-- <img class="gambar-motor-beat" src="/images/motor_beat.png" alt=""> -->
+      <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+                    <%=index.vPhoto.data.toString('base64')%>" />
+      <div class="informasi-kendaraan">
+        <p class="plat-nomor"><%=index.vNumber%></p>
+        <div class="informasi-kendaran-details">
+          <div class="details">
+            <img class="tag" src="/images/tag.png" alt="">
+            <p class="deskripsi-title">
+              Deskripsi Kendaraan
+            </p>
+            <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+          </div>
+          <div class="details">
+            <img class="clock" src="/images/clock.png" alt="">
+            <p class="deskripsi-title">
+              Waktu Kejadian
+            </p>
+            <p class="isi-deskripsi">
+              <%=index.lostTime%>
+              , di <%=index.lostLocation%></p>
+          </div>
+          <div class="details">
+            <img class="loc" src="/images/location-marker.png" alt="">
+            <p class=" deskripsi-title">
+              Deskripsi Tambahan
+            </p>
+            <p class="isi-deskripsi"><%=index.description%></p>
+          </div>
+        </div>
+      </div>
+      <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
+    </div>
+    <%});%>
+  </div>
+  <%- include('partials/footer')-%>
 </body>
 
 </html>
