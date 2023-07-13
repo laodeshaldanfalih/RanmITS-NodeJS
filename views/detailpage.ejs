@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/detailpage.css">
+  <link rel="stylesheet" href="/css/navbarx.css">
+  <title>RanmITS</title>
+</head>
+
+<body>
+  <%- include('partials/navbarx') -%>
+
+  <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+                <%=index.vPhoto.data.toString('base64')%>" />
+  <div class="informasi-kendaraan">
+    <p class="plat-nomor"><%=index.vNumber%></p>
+    <div class="informasi-kendaran-details">
+      <div class="details">
+        <div class="title">
+          <img class="tag" src="/images/tag.png" alt="">
+          <p class="deskripsi-title">
+            Deskripsi Kendaraan
+          </p>
+        </div>
+        <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+      </div>
+      <div class="details">
+        <div class="title">
+          <img class="tag" src="/images/clock.png" alt="">
+          <p class="deskripsi-title">
+            Waktu Kejadian
+          </p>
+        </div>
+        <p class="isi-deskripsi">
+          <%=index.lostTime%>
+          , di <%=index.lostLocation%></p>
+      </div>
+      <div class="details">
+        <div class="title">
+          <img class="tag" src="/images/pencil-alt.png" alt="">
+          <p class=" deskripsi-title">
+            Terakhir Dilihat
+          </p>
+        </div>
+        <p class="isi-deskripsi"><%=index.lostLocation%></p>
+      </div>
+      <div class="details">
+        <div class="title">
+          <img class="tag" src="/images/location-marker.png" alt="">
+          <p class=" deskripsi-title">
+            Deskripsi Tambahan
+          </p>
+        </div>
+        <p class="isi-deskripsi"><%=index.description%></p>
+      </div>
+    </div>
+  </div>
+  <div class="hubungi-pemilik-button">
+    <img src="/images/phone.png" alt="">
+    <p>Hubungi Pemilik</p>
+  </div>
+
+</html>

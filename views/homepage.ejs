@@ -85,9 +85,13 @@
       </div>
       <%lostVehicle.forEach((index)=>{%>
       <div class="laporan-kehilangan-card">
-        <!-- <img class="gambar-motor-beat" src="/images/motor_beat.png" alt=""> -->
-        <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
-                    <%=index.vPhoto.data.toString('base64')%>" />
+        <form class="detailedVehicleId" action="/detailedVehicleId" method="post">
+          <input type="hidden" value="<%=index._id%>" name="detailedVehicleId">
+          <button type="post">
+            <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+            <%=index.vPhoto.data.toString('base64')%>" />
+          </button>
+        </form>
         <div class="informasi-kendaraan">
           <p class="plat-nomor"><%=index.vNumber%></p>
           <div class="informasi-kendaran-details">

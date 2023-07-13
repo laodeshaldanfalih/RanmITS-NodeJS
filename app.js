@@ -63,6 +63,7 @@ var unmatchedPassword;
 var matchedAccount;
 var unmatchedAccount;
 var id;
+var detailedVehicleId;
 
 // function
 function dateFormat(dates){
@@ -175,7 +176,19 @@ app.post('/',(req,res)=>{
                     console.log("id: "+deletedId+" has been deleted");
                     res.redirect('/profile')
                 });
-                
+            });
+
+            // lost vehicle detial page
+            app.get("/detail",(req,res)=>{
+                LostVehicle.findOne({_id: detailedVehicleId}).then((index)=>{
+                    res.render('detailpage',{index: index, navbarTitle: "Detail Laporan"});
+                });
+               
+            });
+
+            app.post('/detailedVehicleId',(req,res)=>{
+                detailedVehicleId = req.body.detailedVehicleId;
+                res.redirect('/detail')
             });
 
         }else{
