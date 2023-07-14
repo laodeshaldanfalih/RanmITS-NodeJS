@@ -7,7 +7,17 @@ body{
     margin: 0;
     top: 0;
 }
-  
+
+.profilepage{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 375px;
+    background-color: #F9FAFB;
+}
+
 p{
 margin: 0;
 font-family: 'Poppins', sans-serif;
@@ -165,7 +175,7 @@ text-align: left;
     color: #575757;
 }
 
-.laporan-kehilangan-card .tombol-hubungi-pemilik {
+.laporan-kehilangan-card .tombol-hapus-laporan {
     margin-left: 16px;
     margin-bottom: 16px;
     height: 36px;
@@ -176,4 +186,91 @@ text-align: left;
     align-items: center;
 }
 
+.warning {
+    width: 327px;
+    height: 204px;
+    background-color: white;
+    border-radius: 8px;
+    position: fixed;
+    top: 290px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.warning .warning-title {
+    width: 130px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.warning .warning-title img {
+    width: 24px;
+    height: 24px;
+}
+
+.warning .warning-title p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.warning .isi {
+    font-size: 12px;
+    color: #4B5563;
+    text-align: center;
+}
+
+.warning .yesno-button {
+    width: 193px;
+    height: 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.warning .yesno-button .yes{
+    text-decoration: none;
+    width: 92px;
+    height: 38px;
+    border: 1px solid #F8B4B4;
+    background-color: #FDF2F2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning .yesno-button .yes p{
+    color: #C81E1E;
+    font-size: 12px;
+    text-align: center;
+}
+
+.warning .yesno-button .no{
+    text-decoration: none;
+    width: 92px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C81E1E;
+    border: 0;
+}
+
+
+.warning .yesno-button .no p{
+    color: white;
+    font-size: 12px;
+}
 

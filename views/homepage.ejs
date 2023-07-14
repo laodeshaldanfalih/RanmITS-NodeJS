@@ -13,8 +13,8 @@
 </head>
 
 <body>
-  <%- include('partials/navbar') -%>
-  <div class="homepage">
+  <div class="homepage" id="homepage">
+    <%- include('partials/navbar') -%>
     <img class="shield" src="/images/shield.png" alt="">
     <div class="content-1">
       <p class="content-1-title">
@@ -75,5 +75,37 @@
       <%- include("partials/laporan-kehilangan-card") -%>
     </div>
     <%- include('partials/footer')-%>
+    <button class="panggil-petugas-button" id="panggil-petugas-button" onclick="openWarning()">
+      <img src="/images/status-online-white.png" alt="">
+      <p>Panggil Petugas</p>
+    </button>
+  </div>
+  <div class="warning" id="warning">
+    <div class="warning-title">
+      <img src="images/exclamation.png" alt="">
+      <p>Peringatan</p>
+    </div>
+    <p class="isi">Dengan menekan “Lanjutkan”, anda akan menyalakan fitur Panggil Petugas yang terhubung dengan petugas keamanan</p>
+    <div class="yesno-button">
+      <a class="yes" href="tel:+6281325787170">
+        <p>Lanjutkan</p>
+      </a>
+      <button class="no" onclick="closeWarning()">
+        <p>Batal</p>
+      </button>
+    </div>
   </div>
 </body>
+
+<script>
+  function closeWarning() {
+    document.getElementById("warning").style.display = "none";
+    document.getElementById("homepage").style.opacity = "1";
+  }
+
+  function openWarning() {
+    document.getElementById("warning").style.display = "flex";
+    document.getElementById("homepage").style.opacity = "0.1";
+
+  }
+</script>

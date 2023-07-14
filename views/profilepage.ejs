@@ -12,72 +12,104 @@
 </head>
 
 <body>
-  <%- include('partials/navbar')-%>
-  <div class="profile-title">
-    <p class="title-1">Profil</p>
-    <a href="/">
-      <button>
-        <p>Keluar Akun</p>
-        <img src="/images/logout.png" alt="" width="16px" height="16px">
-      </button>
-    </a>
+  <div id="profilepage" class="profilepage">
+    <%- include('partials/navbar')-%>
+    <div class="profile-title">
+      <p class="title-1">Profil</p>
+      <a href="/">
+        <button>
+          <p>Keluar Akun</p>
+          <img src="/images/logout.png" alt="" width="16px" height="16px">
+        </button>
+      </a>
 
-  </div>
-  <div class="data-akun">
-    <p class="title">Data Akun</p>
-    <p>Nama</p>
-    <div>
-      <p><%=user.nama%></p>
     </div>
-    <p>Alamat Email</p>
-    <div>
-      <p><%=user.email%></p>
+    <div class="data-akun">
+      <p class="title">Data Akun</p>
+      <p>Nama</p>
+      <div>
+        <p><%=user.nama%></p>
+      </div>
+      <p>Alamat Email</p>
+      <div>
+        <p><%=user.email%></p>
+      </div>
     </div>
-  </div>
-  <div class="kehilangan-card">
-    <p class="title-2">Laporan Anda</p>
-    <%lostVehicle.forEach((index)=>{%>
-    <div class="laporan-kehilangan-card">
-      <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+    <div class="kehilangan-card">
+      <p class="title-2">Laporan Anda</p>
+      <%lostVehicle.forEach((index)=>{%>
+      <div class="laporan-kehilangan-card">
+        <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
                     <%=index.vPhoto.data.toString('base64')%>" />
-      <div class="informasi-kendaraan">
-        <p class="plat-nomor"><%=index.vNumber%></p>
-        <div class="informasi-kendaran-details">
-          <div class="details">
-            <img class="tag" src="/images/tag.png" alt="">
-            <p class="deskripsi-title">
-              Deskripsi Kendaraan
-            </p>
-            <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
-          </div>
-          <div class="details">
-            <img class="clock" src="/images/clock.png" alt="">
-            <p class="deskripsi-title">
-              Waktu Kejadian
-            </p>
-            <p class="isi-deskripsi">
-              <%=index.lostTime%>
-              , di <%=index.lostLocation%></p>
-          </div>
-          <div class="details">
-            <img class="loc" src="/images/location-marker.png" alt="">
-            <p class=" deskripsi-title">
-              Deskripsi Tambahan
-            </p>
-            <p class="isi-deskripsi"><%=index.description%></p>
+        <div class="informasi-kendaraan">
+          <p class="plat-nomor"><%=index.vNumber%></p>
+          <div class="informasi-kendaran-details">
+            <div class="details">
+              <img class="tag" src="/images/tag.png" alt="">
+              <p class="deskripsi-title">
+                Deskripsi Kendaraan
+              </p>
+              <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+            </div>
+            <div class="details">
+              <img class="clock" src="/images/clock.png" alt="">
+              <p class="deskripsi-title">
+                Waktu Kejadian
+              </p>
+              <p class="isi-deskripsi">
+                <%=index.lostTime%>
+                , di <%=index.lostLocation%></p>
+            </div>
+            <div class="details">
+              <img class="loc" src="/images/location-marker.png" alt="">
+              <p class=" deskripsi-title">
+                Deskripsi Tambahan
+              </p>
+              <p class="isi-deskripsi"><%=index.description%></p>
+            </div>
           </div>
         </div>
+        <form action="/deleteLostVehicle" method="post">
+          <input type="hidden" value="<%=index._id%>" name="delete">
+          <button class="tombol-hapus-laporan" type="submit" onclick="openWarning()">
+            <img src="/images/deleteButton.png" alt="" width="152px" height="36px">
+          </button>
+        </form>
       </div>
+      <%});%>
+    </div>
+    <%- include('partials/footer')-%>
+  </div>
+  <div class="warning" id="warning">
+    <div class="warning-title">
+      <img src="images/exclamation.png" alt="">
+      <p>Peringatan</p>
+    </div>
+    <p class="isi">Dengan menekan “Lanjutkan”, anda akan menyalakan fitur Panggil Petugas yang terhubung dengan petugas keamanan</p>
+    <div class="yesno-button">
       <form action="/deleteLostVehicle" method="post">
-        <input type="hidden" value="<%=index._id%>" name="delete">
-        <button class="tombol-hubungi-pemilik" type="submit">
-          <img src="/images/deleteButton.png" alt="" width="152px" height="36px">
+        <input type="hidden" value="yes" name="yes">
+        <button class="yes" type="submit">
+          <p>Hapus</p>
         </button>
       </form>
+      <a class="no" onclick="closeWarning()">
+        <p>Batal</p>
+      </a>
     </div>
-    <%});%>
   </div>
-  <%- include('partials/footer')-%>
 </body>
+<script>
+  function closeWarning() {
+    document.getElementById("warning").style.display = "none";
+    document.getElementById("profilepage").style.opacity = "1";
+  }
+
+  function openWarning() {
+    document.getElementById("warning").style.display = "flex";
+    document.getElementById("profilepage").style.opacity = "0.1";
+
+  }
+</script>
 
 </html>

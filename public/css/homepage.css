@@ -424,3 +424,119 @@ span{
     height: 36px;
     width: 152px;
 }
+
+.panggil-petugas-button {
+    width: 195px;
+    height: 48px;
+    background-color: #E02424;
+    border-radius: 32px;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    position: fixed;
+    bottom: 46px;
+    right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.panggil-petugas-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.panggil-petugas-button p {
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.warning {
+    width: 327px;
+    height: 204px;
+    background-color: white;
+    border-radius: 8px;
+    position: fixed;
+    top: 290px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.warning .warning-title {
+    width: 130px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.warning .warning-title img {
+    width: 24px;
+    height: 24px;
+}
+
+.warning .warning-title p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.warning .isi {
+    font-size: 12px;
+    color: #4B5563;
+    text-align: center;
+}
+
+.warning .yesno-button {
+    width: 193px;
+    height: 38px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.warning .yesno-button .yes{
+    text-decoration: none;
+    width: 92px;
+    height: 38px;
+    background-color: #1C64F2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning .yesno-button .yes p{
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.warning .yesno-button .no{
+    text-decoration: none;
+    width: 92px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.warning .yesno-button .no p{
+    color: #6B7280;
+    font-size: 12px;
+}
+

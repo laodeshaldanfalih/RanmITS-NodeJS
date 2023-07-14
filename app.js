@@ -66,6 +66,7 @@ var unmatchedAccount;
 var id;
 var detailedVehicleId;
 var query;
+var deletedId = [];
 
 // function
 function dateFormat(dates){
@@ -187,11 +188,16 @@ app.post('/',(req,res)=>{
 
             // delete lost vehicle data from profile page
             app.post('/deleteLostVehicle',(req,res)=>{
-                var deletedId = req.body.delete;
-                LostVehicle.findOneAndDelete({_id: deletedId}).then((index)=>{
-                    console.log("id: "+deletedId+" has been deleted");
-                    res.redirect('/profile')
-                });
+                deletedId.push(req.body.delete); 
+                var yes = req.body.yes;
+                if(yes == "yes"){
+                    LostVehicle.findOneAndDelete({_id: deletedId[deletedId.length-2]}).then((index)=>{
+                        yes = "no";
+                        console.log("id: "+deletedId+" has been deleted");
+                        res.redirect('/profile')
+                    });
+                }
+                // 64b069f4a29f6f7d162dad00
             });
 
             // lost vehicle detial page
@@ -204,7 +210,6 @@ app.post('/',(req,res)=>{
 
             app.post('/detailedVehicleId',(req,res)=>{
                 detailedVehicleId = req.body.detailedVehicleId;
-                res.redirect('/detail')
             });
 
         }else{
