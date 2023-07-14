@@ -13,21 +13,24 @@
 </head>
 
 <body>
-  <%- include('partials/navbarx') -%>
+  <div class="navbar">
+    <img src="images/logo.png" alt="" width="29.34px" height="29.23px">
+    <p class="navbar-title">RanmITS</p>
+  </div>
   <div class="body">
     <p class="title">Buat akun</p>
     <form action="/register" method="post">
       <p>Alamat Email</p>
-      <input type="email" placeholder="Masukkan alamat email" name="email">
+      <input type="email" placeholder="Masukkan alamat email" name="email" required>
       <% if(existedEmail===true){ %>
       <p class="alert">*Alamat email sudah digunakan</p>
       <% } %>
       <p>Nama anda</p>
-      <input type="text" placeholder="Masukkan nama anda" name="nama">
+      <input type="text" placeholder="Masukkan nama anda" name="nama" required>
       <p>Password</p>
-      <input type="password" placeholder="Masukkan password" name="password">
+      <input type="password" placeholder="Masukkan password" name="password" required>
       <p>Konfirmasi Password</p>
-      <input type="password" placeholder="Masukkan password" name="passwordConfirmation">
+      <input type="password" placeholder="Masukkan password" name="passwordConfirmation" required>
       <% if(unmatchedPassword===true){ %>
       <p class="alert">*Password tidak sama</p>
       <% } %>

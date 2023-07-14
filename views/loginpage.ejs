@@ -13,7 +13,10 @@
 </head>
 
 <body>
-  <%- include('partials/navbarx') -%>
+  <div class="navbar">
+    <img src="images/logo.png" alt="" width="29.34px" height="29.23px">
+    <p class="navbar-title">RanmITS</p>
+  </div>
   <div class="body">
     <p class="title">Login</p>
     <%if(unmatchedAccount == true){%>
@@ -23,9 +26,9 @@
     <% } %>
     <form action="/" method="post">
       <p>Alamat Email</p>
-      <input type="text" placeholder="Masukkan alamat email" name="email">
+      <input type="text" placeholder="Masukkan alamat email" name="email" required>
       <p>Password</p>
-      <input type="password" placeholder="Masukkan password" name="password">
+      <input type="password" placeholder="Masukkan password" name="password" required>
       <button class="login-button" type="submit">
         <p>Login</p>
       </button>

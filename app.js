@@ -86,7 +86,7 @@ app.get('/', (req,res)=>{
 });
 
 app.post('/',(req,res)=>{
-    var email = req.body.email;
+    var email = req.body.email.toLowerCase();;
     var password = req.body.password;
     User.find().then((index)=>{
         index.forEach((index)=>{
@@ -137,7 +137,7 @@ app.post('/',(req,res)=>{
                 });
                 
             });
-
+            
             // laporan-kehilangan-page
             app.get("/laporan-kehilangan-page", (req,res)=>{
                 res.render('laporan-kehilangan-page',{navbarTitle: "Lapor Kehilangan"});
@@ -222,7 +222,7 @@ app.get('/register', (req,res)=>{
 });
 
 app.post('/register', async (req,res)=> { 
-    var email = req.body.email;
+    var email = req.body.email.toLowerCase();
     var nama = req.body.nama;
     var password = req.body.password;
     var passwordConfirmation = req.body.passwordConfirmation;

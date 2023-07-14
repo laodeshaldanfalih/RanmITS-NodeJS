@@ -21,6 +21,34 @@ p{
     color: #AEAEAE;
 }
 
+.navbar {
+    margin: 0;
+    height: 77.23px;
+    width: 375px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.navbar img {
+    margin: 0;
+    width: 29.34;
+    height: 29.34;
+    margin-right: 9.27px;
+}
+
+.navbar .navbar-title {
+    margin: 0;
+    color: #0466C8;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: start;
+}
+
 .body{
     margin-top: 60px;
     width: 327px;
