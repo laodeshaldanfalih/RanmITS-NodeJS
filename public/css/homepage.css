@@ -335,7 +335,6 @@ span{
 }
 
 .laporan-kehilangan-card {
-    /* position: fixed; */
     margin-top: 16px;
     width: 327px;
     height: 418px;
@@ -344,6 +343,8 @@ span{
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-bottom: 16px;
+    box-sizing: border-box;
 }
 
 .laporan-kehilangan-card .detailedVehicleId {
@@ -369,10 +370,11 @@ span{
 .laporan-kehilangan-card .informasi-kendaraan {
     height: 156px;
     width: 187px;
-    margin-left: 16px;
+    margin: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 24px;
 }
 
 .laporan-kehilangan-card .informasi-kendaraan > .plat-nomor{
@@ -416,13 +418,13 @@ span{
     font-weight: 500;
     color: #575757;
 }
+.laporan-kehilangan-card a {
+    width: 152px;
+} 
 
 .laporan-kehilangan-card .tombol-hubungi-pemilik {
-    margin-top: 24px;
     margin-left: 16px;
-    margin-bottom: 16px;
     height: 36px;
-    width: 152px;
 }
 
 .panggil-petugas-button {
