@@ -42,30 +42,23 @@
           <a href="/profile"><%=user.nama%></a>
           <img src="/images/user-circle.png" alt="">
         </div>
-        <!-- <a href="/register">
-          <div class="daftar-akun-button">
-            <p>Daftar akun</p>
-          </div>
-        </a>
-        <a href="/">
-          <div class="masuk-akun-button">
-            <p>Masuk akun</p>
-          </div>
-        </a> -->
       </div>
     </div>
     <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="humberger-menu">&#9776;</span>
+
   </div>
   <script>
     function openNav() {
-      document.getElementById("mySidenav").style.width = "305px";
-      document.getElementsByClassName('homepage').classList.add("body-grey");
+      document.getElementById("mySidenav").style.width = "375px";
+      document.getElementsByClassName("closebox").style.width = "375px";
     }
 
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("hompage").style.backgroundColor = "#FFFFFF;";
+      document.getElementsByClassName("closebox").style.width = "0";
     }
+
+    document.getElementById('11a').style.top
   </script>
 </body>
 

@@ -258,6 +258,7 @@ span{
 }
 
 .category .semua {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,6 +283,7 @@ span{
 
 
 .category .motor {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -304,6 +306,7 @@ span{
 }
 
 .category  .mobil {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -332,6 +335,7 @@ span{
 }
 
 .laporan-kehilangan-card {
+    /* position: fixed; */
     margin-top: 16px;
     width: 327px;
     height: 418px;

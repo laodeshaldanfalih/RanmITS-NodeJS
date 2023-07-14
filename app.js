@@ -47,6 +47,7 @@ const lostVehicleSchema = new mongoose.Schema({
     description: String,
     userId: String
 });
+
 const userSchema = new mongoose.Schema({
     email: String,
     nama: String,
@@ -64,6 +65,7 @@ var matchedAccount;
 var unmatchedAccount;
 var id;
 var detailedVehicleId;
+var query;
 
 // function
 function dateFormat(dates){
@@ -99,13 +101,27 @@ app.post('/',(req,res)=>{
             // homepage
             app.get("/home", (req,res)=>{
                 User.findOne({_id: id}).then((user)=>{
-                    LostVehicle.find({userId: id}).then((index)=>{
+                    LostVehicle.find(query).then((index)=>{
                         res.render("homepage",{
                             user: user,
                             lostVehicle: index,
                         });
                     });
                 });
+            });
+
+            app.post("/home",(req,res)=>{
+                var vehicleCategory = req.body.vehicleCategory;
+                if(vehicleCategory == "semua"){
+                    query = {};
+                }else if(vehicleCategory == "motor"){
+                    query = {vType: vehicleCategory};
+                }else if(vehicleCategory == "mobil"){
+                    query = {vType: vehicleCategory};
+                }
+               
+                console.log(query);
+                res.redirect('/home');
             });
 
             // profile-page
