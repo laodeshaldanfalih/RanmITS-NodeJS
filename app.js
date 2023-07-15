@@ -12,9 +12,7 @@ app.use(bodyParser.json())
 app.use(express.static("public"));
 
 // monggose db
-// mongoose.connect('mongodb+srv://admin-shaldan:admin123@cluster0.cpnwcn2.mongodb.net/RanmITSDB');
-mongoose.connect(process.env.MONGO_URL)
-.then(console.log("DB Connected"))
+mongoose.connect(process.env.MONGO_URL).then(console.log("DB Connected"))
 
 //multer
 var multer = require('multer');
