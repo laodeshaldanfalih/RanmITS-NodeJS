@@ -98,20 +98,6 @@ app.post('/',(req,res)=>{
         if(matchedAccount == true){
             res.redirect('/home');
 
-            // homepage
-            // app.get("/home", (req,res)=>{
-            //     var semua, motor,mobil;
-            //     User.findOne({_id: id}).then((user)=>{
-            //         LostVehicle.find(query).then((index)=>{
-            //             res.render("homepage",{
-            //                 user: user,
-            //                 lostVehicle: index,
-            //             });
-            //         });
-            //     });
-            // });
-
-
             app.get("/home", (req,res)=>{
                 var queryMotor = {vType: "motor"};
                 var queryMobil = {vType: "mobil"};
@@ -132,20 +118,6 @@ app.post('/',(req,res)=>{
                     });
                 });
             });
-
-            // app.post("/home",(req,res)=>{
-            //     var vehicleCategory = req.body.vehicleCategory;
-            //     var scrolledLink = req.body.scrolledLink;
-            //     if(vehicleCategory == "semua"){
-            //         query = {};
-            //     }else if(vehicleCategory == "motor"){
-            //         query = {vType: vehicleCategory};
-            //     }else if(vehicleCategory == "mobil"){
-            //         query = {vType: vehicleCategory};
-            //     }
-               
-            //     res.redirect('/home');
-            // });
 
             // profile-page
             app.get('/profile', (req,res)=>{
