@@ -6,7 +6,9 @@ var fs = require('fs');
 var path = require('path');
 app.set('view engine', 'ejs');
 require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 
+console.log(process.env.MONGO_URL);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(express.static("public"));
