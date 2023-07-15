@@ -83,7 +83,6 @@ app.get('/', (req,res)=>{
     res.render('loginpage',{navbarTitle: "Login", unmatchedAccount:unmatchedAccount});
     matchedAccount = false;
     unmatchedAccount = false;
-    console.log(matchedAccount);
 });
 
 app.post('/',(req,res)=>{
@@ -100,34 +99,56 @@ app.post('/',(req,res)=>{
             res.redirect('/home');
 
             // homepage
+            // app.get("/home", (req,res)=>{
+            //     var semua, motor,mobil;
+            //     User.findOne({_id: id}).then((user)=>{
+            //         LostVehicle.find(query).then((index)=>{
+            //             res.render("homepage",{
+            //                 user: user,
+            //                 lostVehicle: index,
+            //             });
+            //         });
+            //     });
+            // });
+
+
             app.get("/home", (req,res)=>{
+                var queryMotor = {vType: "motor"};
+                var queryMobil = {vType: "mobil"};
+                
+                
                 User.findOne({_id: id}).then((user)=>{
-                    LostVehicle.find(query).then((index)=>{
-                        res.render("homepage",{
-                            user: user,
-                            lostVehicle: index,
+                    LostVehicle.find().then((indexSemua)=>{
+                        LostVehicle.find(queryMotor).then((indexMotor)=>{
+                            LostVehicle.find(queryMobil).then((indexMobil)=>{
+                                res.render("homepage",{
+                                    user: user,
+                                    semua: indexSemua,
+                                    motor: indexMotor,
+                                    mobil: indexMobil
+                                });
+                            });
                         });
                     });
                 });
             });
 
-            app.post("/home",(req,res)=>{
-                var vehicleCategory = req.body.vehicleCategory;
-                if(vehicleCategory == "semua"){
-                    query = {};
-                }else if(vehicleCategory == "motor"){
-                    query = {vType: vehicleCategory};
-                }else if(vehicleCategory == "mobil"){
-                    query = {vType: vehicleCategory};
-                }
+            // app.post("/home",(req,res)=>{
+            //     var vehicleCategory = req.body.vehicleCategory;
+            //     var scrolledLink = req.body.scrolledLink;
+            //     if(vehicleCategory == "semua"){
+            //         query = {};
+            //     }else if(vehicleCategory == "motor"){
+            //         query = {vType: vehicleCategory};
+            //     }else if(vehicleCategory == "mobil"){
+            //         query = {vType: vehicleCategory};
+            //     }
                
-                console.log(query);
-                res.redirect('/home');
-            });
+            //     res.redirect('/home');
+            // });
 
             // profile-page
             app.get('/profile', (req,res)=>{
-                console.log(id);
                 User.findOne({_id: id}).then((user)=>{
                     LostVehicle.find({userId: id}).then((index)=>{
                         res.render("profilepage",{
@@ -210,6 +231,7 @@ app.post('/',(req,res)=>{
 
             app.post('/detailedVehicleId',(req,res)=>{
                 detailedVehicleId = req.body.detailedVehicleId;
+                res.redirect("/detail");
             });
 
         }else{

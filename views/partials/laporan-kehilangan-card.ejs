@@ -1,62 +1,178 @@
-<div class="category">
-  <form action="/home" method="post">
-    <input type="hidden" value="semua" name="vehicleCategory">
-    <button class="semua">
-      <p>Semua</p>
-    </button>
-  </form>
-  <form action="/home" method="post">
-    <input type="hidden" value="motor" name="vehicleCategory">
-    <button class="motor">
-      <p>Motor</p>
-    </button>
-  </form>
-  <form action="/home" method="post">
-    <input type="hidden" value="mobil" name="vehicleCategory">
-    <button class="mobil">
-      <p>Mobil</p>
-    </button>
-  </form>
+<div class="category" id="category">
+  <button class="semua" id="semua" onclick="semuaCategory()">
+    <p>Semua</p>
+  </button>
+  <button class="motor" id="motor" onclick="motorCategory()">
+    <p>Motor</p>
+  </button>
+  <button class="mobil" id="mobil" onclick="mobilCategory()">
+    <p>Mobil</p>
+  </button>
 </div>
-<%lostVehicle.forEach((index)=>{%>
-<div class="laporan-kehilangan-card" id="refresh-content">
-  <form class="detailedVehicleId" action="/detailedVehicleId" method="post">
-    <input type="hidden" value="<%=index._id%>" name="detailedVehicleId">
-    <button type="post">
-      <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
-          <%=index.vPhoto.data.toString('base64')%>" />
-    </button>
-  </form>
-  <div class="informasi-kendaraan">
-    <p class="plat-nomor"><%=index.vNumber%></p>
-    <div class="informasi-kendaran-details">
-      <div class="details">
-        <img class="tag" src="/images/tag.png" alt="">
-        <p class="deskripsi-title">
-          Deskripsi Kendaraan
-        </p>
-        <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+<div class="laporan-kehilangan-all">
+  <div class="all" id="all">
+    <%semua.forEach((index)=>{%>
+    <div class="laporan-kehilangan-card" id="refresh-content">
+      <form class="detailedVehicleId" action="/detailedVehicleId" method="post">
+        <input type="hidden" value="<%=index._id%>" name="detailedVehicleId">
+        <button type="post">
+          <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+                <%=index.vPhoto.data.toString('base64')%>" />
+        </button>
+      </form>
+      <div class="informasi-kendaraan" id="informasi-kendaraan">
+        <p class="plat-nomor"><%=index.vNumber%></p>
+        <div class="informasi-kendaran-details">
+          <div class="details">
+            <img class="tag" src="/images/tag.png" alt="">
+            <p class="deskripsi-title">
+              Deskripsi Kendaraan
+            </p>
+            <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+          </div>
+          <div class="details">
+            <img class="clock" src="/images/clock.png" alt="">
+            <p class="deskripsi-title">
+              Waktu Kejadian
+            </p>
+            <p class="isi-deskripsi">
+              <%=index.lostTime%>
+              , di <%=index.lostLocation%></p>
+          </div>
+          <div class="details">
+            <img class="loc" src="/images/location-marker.png" alt="">
+            <p class=" deskripsi-title">
+              Deskripsi Tambahan
+            </p>
+            <p class="isi-deskripsi"><%=index.description%></p>
+          </div>
+        </div>
       </div>
-      <div class="details">
-        <img class="clock" src="/images/clock.png" alt="">
-        <p class="deskripsi-title">
-          Waktu Kejadian
-        </p>
-        <p class="isi-deskripsi">
-          <%=index.lostTime%>
-          , di <%=index.lostLocation%></p>
-      </div>
-      <div class="details">
-        <img class="loc" src="/images/location-marker.png" alt="">
-        <p class=" deskripsi-title">
-          Deskripsi Tambahan
-        </p>
-        <p class="isi-deskripsi"><%=index.description%></p>
-      </div>
+      <a href="https://wa.me/<%=index.handphoneNumber%>" target="_blank">
+        <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
+      </a>
     </div>
+    <%});%>
   </div>
-  <a href="https://wa.me/<%=index.handphoneNumber%>" target="_blank">
-    <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
-  </a>
+  <div class="motorall" id="motorall">
+    <%motor.forEach((index)=>{%>
+    <div class="laporan-kehilangan-card" id="refresh-content">
+      <form class="detailedVehicleId" action="/detailedVehicleId" method="post">
+        <input type="hidden" value="<%=index._id%>" name="detailedVehicleId">
+        <button type="post">
+          <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+                  <%=index.vPhoto.data.toString('base64')%>" />
+        </button>
+      </form>
+      <div class="informasi-kendaraan" id="informasi-kendaraan">
+        <p class="plat-nomor"><%=index.vNumber%></p>
+        <div class="informasi-kendaran-details">
+          <div class="details">
+            <img class="tag" src="/images/tag.png" alt="">
+            <p class="deskripsi-title">
+              Deskripsi Kendaraan
+            </p>
+            <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+          </div>
+          <div class="details">
+            <img class="clock" src="/images/clock.png" alt="">
+            <p class="deskripsi-title">
+              Waktu Kejadian
+            </p>
+            <p class="isi-deskripsi">
+              <%=index.lostTime%>
+              , di <%=index.lostLocation%></p>
+          </div>
+          <div class="details">
+            <img class="loc" src="/images/location-marker.png" alt="">
+            <p class=" deskripsi-title">
+              Deskripsi Tambahan
+            </p>
+            <p class="isi-deskripsi"><%=index.description%></p>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/<%=index.handphoneNumber%>" target="_blank">
+        <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
+      </a>
+    </div>
+    <%});%>
+  </div>
+  <div class="mobilall" id="mobilall">
+    <%mobil.forEach((index)=>{%>
+    <div class="laporan-kehilangan-card" id="refresh-content">
+      <form class="detailedVehicleId" action="/detailedVehicleId" method="post">
+        <input type="hidden" value="<%=index._id%>" name="detailedVehicleId">
+        <button type="post">
+          <img class="vehicle-image" src="data:image/<%=index.vPhoto.contentType%>;base64,
+                  <%=index.vPhoto.data.toString('base64')%>" />
+        </button>
+      </form>
+      <div class="informasi-kendaraan" id="informasi-kendaraan">
+        <p class="plat-nomor"><%=index.vNumber%></p>
+        <div class="informasi-kendaran-details">
+          <div class="details">
+            <img class="tag" src="/images/tag.png" alt="">
+            <p class="deskripsi-title">
+              Deskripsi Kendaraan
+            </p>
+            <p class="isi-deskripsi"><%=index.vModel%> | Warna <%=index.vColor%> | <%=index.vYears%></p>
+          </div>
+          <div class="details">
+            <img class="clock" src="/images/clock.png" alt="">
+            <p class="deskripsi-title">
+              Waktu Kejadian
+            </p>
+            <p class="isi-deskripsi">
+              <%=index.lostTime%>
+              , di <%=index.lostLocation%></p>
+          </div>
+          <div class="details">
+            <img class="loc" src="/images/location-marker.png" alt="">
+            <p class=" deskripsi-title">
+              Deskripsi Tambahan
+            </p>
+            <p class="isi-deskripsi"><%=index.description%></p>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/<%=index.handphoneNumber%>" target="_blank">
+        <img class="tombol-hubungi-pemilik" src="/images/tombol_hubugi_pemilik.png" alt="">
+      </a>
+    </div>
+    <%});%>
+  </div>
 </div>
-<%});%>
+<script>
+  document.getElementById("semua").classList.add("hovered");
+
+  function semuaCategory() {
+    document.getElementById("semua").classList.add("hovered");
+    document.getElementById("motor").classList.remove("hovered");
+    document.getElementById("mobil").classList.remove("hovered");
+
+    document.getElementById("all").style.display = "flex";
+    document.getElementById("motorall").style.display = "none";
+    document.getElementById("mobilall").style.display = "none";
+  }
+
+  function motorCategory() {
+    document.getElementById("semua").classList.remove("hovered");
+    document.getElementById("motor").classList.add("hovered");
+    document.getElementById("mobil").classList.remove("hovered");
+
+    document.getElementById("all").style.display = "none";
+    document.getElementById("motorall").style.display = "flex";
+    document.getElementById("mobilall").style.display = "none";
+  }
+
+  function mobilCategory() {
+    document.getElementById("semua").classList.remove("hovered");
+    document.getElementById("motor").classList.remove("hovered");
+    document.getElementById("mobil").classList.add("hovered");
+
+    document.getElementById("all").style.display = "none";
+    document.getElementById("motorall").style.display = "none";
+    document.getElementById("mobilall").style.display = "flex";
+  }
+</script>
