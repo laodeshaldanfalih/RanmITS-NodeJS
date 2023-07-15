@@ -1,4 +1,5 @@
 body{
+    margin: 0;
     display: flex;
     justify-content: center;
     background-color: #F9FAFB;
@@ -52,6 +53,7 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .tentang .sub-title {
@@ -65,6 +67,7 @@ p{
 .tentang p {
     font-size: 12px;
     color: #6B7280;
+    text-align: justify;
 }
 
 .tentang .sub-title p {

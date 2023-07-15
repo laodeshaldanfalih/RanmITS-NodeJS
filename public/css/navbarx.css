@@ -5,18 +5,23 @@ p{
 }
 
 .navbar {
+    padding: 24px;
+    box-sizing: border-box;
     height: 77.23px;
     width: 375px;
     background-color: white;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: start;
 }
 
 .navbar img {
-    margin: 24px;
     margin-right: 16px;
 }
 
 .navbar p {
+    margin-bottom: 3px;
     font-weight: 500;
+    font-size: 17px;
 }

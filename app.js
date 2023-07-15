@@ -126,6 +126,7 @@ app.post('/',(req,res)=>{
                         res.render("profilepage",{
                             user: user,
                             lostVehicle: index,
+                            navbarTitle: "Profile"
                         });
                     });
                 });
@@ -170,7 +171,7 @@ app.post('/',(req,res)=>{
             //tentang-produk-page
             app.get("/tentang-produk-page", (req,res)=>{
                 User.findOne({_id: id}).then((index)=>{
-                    res.render("tentang-produk-page",{user: index});
+                    res.render("tentang-produk-page",{user: index, navbarTitle: "Tentang RanmITS"});
                 });
             });
 
