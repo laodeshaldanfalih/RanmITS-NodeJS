@@ -106,18 +106,26 @@ app.post("/",(req,res)=>{
         password: req.body.password
     });
 
-    req.login(user,(err)=>{
-        if(err){
-            console.log(err);
-        } else{
-            passport.authenticate('local', {
-                failureRedirect: '/',
-            })(req,res,(foundUser)=>{
-                id = req.user.id;
-                res.redirect("/home");
+    User.find({username: user.username}).then((foundUser)=>{
+        if(!foundUser){
+            req.login(user,(err)=>{
+                if(err){
+                    console.log(err);
+                } else{
+                    passport.authenticate('local', {
+                        failureRedirect: '/',
+                    })(req,res,(foundUser)=>{
+                        id = req.user.id;
+                        res.redirect("/home");
+                    });
+                }
             });
+        }else{
+            unmatchedAccount = true;
+            res.redirect("/");
         }
     });
+    
 });
 
 
@@ -281,7 +289,7 @@ app.post('/register', async (req,res)=> {
                         User.updateOne({username: email},{nama: nama}).then(()=>{
                         });
                         passport.authenticate("local")(req,res, function(){
-                            res.redirect("/loggedIn");
+                            res.redirect("/home");
                         });
                     }
                 });
@@ -306,6 +314,6 @@ app.get("/logout",(req,res)=>{
       });
 });
 
-app.listen(process.env.port,()=>{
+app.listen(process.env.PORT,()=>{
     console.log("Running app on port 3000");
 });
