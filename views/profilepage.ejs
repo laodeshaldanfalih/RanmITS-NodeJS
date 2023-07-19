@@ -17,7 +17,7 @@
     <%- include('partials/navbarx')-%>
     <div class="profile-title">
       <p class="title-1">Profil</p>
-      <a href="/">
+      <a href="/logout">
         <button>
           <p>Keluar Akun</p>
           <img src="/images/logout.png" alt="" width="16px" height="16px">
@@ -33,7 +33,7 @@
       </div>
       <p>Alamat Email</p>
       <div>
-        <p><%=user.email%></p>
+        <p><%=user.username%></p>
       </div>
     </div>
     <div class="kehilangan-card">

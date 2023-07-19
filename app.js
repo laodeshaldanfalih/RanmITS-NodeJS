@@ -7,14 +7,24 @@ var path = require('path');
 app.set('view engine', 'ejs');
 require('dotenv').config();
 require('dotenv').config({ path: path.resolve(__dirname, './.env') });
+const session = require('express-session');
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-console.log(process.env.MONGO_URL);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(express.static("public"));
+app.use(session({
+    secret: "OurLitterSecret",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // monggose db
-mongoose.connect(process.env.MONGO_URL).then(console.log("DB Connected"))
+mongoose.connect(process.env.MONGO_URL).then(console.log("DB Connected"));
 
 //multer
 var multer = require('multer');
@@ -54,16 +64,22 @@ const userSchema = new mongoose.Schema({
     password: String,
 });
 
+userSchema.plugin(passportLocalMongoose);
+
 // db model
 const LostVehicle = new mongoose.model("LostVehicle", lostVehicleSchema);
 const User = new mongoose.model("User", userSchema);
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // variabel
 var existedEmail;
 var unmatchedPassword;
 var matchedAccount;
 var unmatchedAccount;
-var id;
 var detailedVehicleId;
 var query;
 var deletedId = [];
@@ -81,175 +97,213 @@ function dateFormat(dates){
 // login-page
 app.get('/', (req,res)=>{
     res.render('loginpage',{navbarTitle: "Login", unmatchedAccount:unmatchedAccount});
-    matchedAccount = false;
     unmatchedAccount = false;
 });
 
-app.post('/',(req,res)=>{
-    var email = req.body.email.toLowerCase();;
-    var password = req.body.password;
-    User.find().then((index)=>{
-        index.forEach((index)=>{
-            if(email == index.email && password == index.password){
-                id = index._id.toString();
-                matchedAccount = true;
-            }
-        });
-        if(matchedAccount == true){
-            res.redirect('/home');
+app.post("/",(req,res)=>{
+    const user = new User({
+        username:  req.body.username,
+        password: req.body.password
+    });
 
-            app.get("/home", (req,res)=>{
-                var queryMotor = {vType: "motor"};
-                var queryMobil = {vType: "mobil"};
-                
-                
-                User.findOne({_id: id}).then((user)=>{
-                    LostVehicle.find().then((indexSemua)=>{
-                        LostVehicle.find(queryMotor).then((indexMotor)=>{
-                            LostVehicle.find(queryMobil).then((indexMobil)=>{
-                                res.render("homepage",{
-                                    user: user,
-                                    semua: indexSemua,
-                                    motor: indexMotor,
-                                    mobil: indexMobil
-                                });
-                            });
-                        });
-                    });
-                });
+    req.login(user,(err)=>{
+        if(err){
+            console.log(err);
+        } else{
+            passport.authenticate('local', {
+                failureRedirect: '/',
+            })(req,res,(foundUser)=>{
+                id = req.user.id;
+                res.redirect("/home");
             });
-
-            // profile-page
-            app.get('/profile', (req,res)=>{
-                User.findOne({_id: id}).then((user)=>{
-                    LostVehicle.find({userId: id}).then((index)=>{
-                        res.render("profilepage",{
-                            user: user,
-                            lostVehicle: index,
-                            navbarTitle: "Profile"
-                        });
-                    });
-                });
-                
-            });
-            
-            // laporan-kehilangan-page
-            app.get("/laporan-kehilangan-page", (req,res)=>{
-                res.render('laporan-kehilangan-page',{navbarTitle: "Lapor Kehilangan"});
-            });
-
-            app.post("/laporan-kehilangan-page", upload.single('vPhoto'),(req,res)=>{
-                const selectedDate = new Date(req.body.lostTime);
-                const formattedDate = selectedDate.toLocaleDateString('id-ID', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  }).toString();;
-
-                const lostVehicle = new LostVehicle({
-                    handphoneNumber : req.body.handphoneNumber,
-                    vType: req.body.vType,
-                    vModel: req.body.vModel,
-                    vYears: req.body.vYears,
-                    vColor: req.body.vColor,
-                    vNumber: req.body.vNumber,
-                    vPhoto: {
-                        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-                        contentType: 'image/png'
-                    },
-                    lostTime: formattedDate,
-                    lostLocation: req.body.lostLocation,
-                    description: req.body.description,
-                    userId: id
-                });
-                lostVehicle.save().then(()=>{
-                    res.redirect('/success');
-                });
-            });
-
-            //tentang-produk-page
-            app.get("/tentang-produk-page", (req,res)=>{
-                User.findOne({_id: id}).then((index)=>{
-                    res.render("tentang-produk-page",{user: index, navbarTitle: "Tentang RanmITS"});
-                });
-            });
-
-            // success page for uploading lost vehicle document
-            app.get('/success',(req,res)=>{
-                res.render("successpage");
-            });
-
-            // delete lost vehicle data from profile page
-            app.post('/deleteLostVehicle',(req,res)=>{
-                deletedId.push(req.body.delete); 
-                var yes = req.body.yes;
-                if(yes == "yes"){
-                    LostVehicle.findOneAndDelete({_id: deletedId[deletedId.length-2]}).then((index)=>{
-                        yes = "no";
-                        console.log("id: "+deletedId+" has been deleted");
-                        res.redirect('/profile')
-                    });
-                }
-                // 64b069f4a29f6f7d162dad00
-            });
-
-            // lost vehicle detial page
-            app.get("/detail",(req,res)=>{
-                LostVehicle.findOne({_id: detailedVehicleId}).then((index)=>{
-                    res.render('detailpage',{index: index, navbarTitle: "Detail Laporan"});
-                });
-               
-            });
-
-            app.post('/detailedVehicleId',(req,res)=>{
-                detailedVehicleId = req.body.detailedVehicleId;
-                res.redirect("/detail");
-            });
-
-        }else{
-           unmatchedAccount = true;
-           res.redirect('/');
         }
     });
+});
+
+
+app.get("/loggedIn",(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render("loggedIn",{userId: req.user.id});
+    }else{
+        res.redirect("/");
+    }
+    
+});
+
+app.get("/home", (req,res)=>{
+    if(req.isAuthenticated()){
+        var queryMotor = {vType: "motor"};
+        var queryMobil = {vType: "mobil"};
+
+        User.findOne({_id: req.user.id}).then((user)=>{
+            LostVehicle.find().then((indexSemua)=>{
+                LostVehicle.find(queryMotor).then((indexMotor)=>{
+                    LostVehicle.find(queryMobil).then((indexMobil)=>{
+                        res.render("homepage",{
+                            user: user,
+                            semua: indexSemua,
+                            motor: indexMotor,
+                            mobil: indexMobil
+                        });
+                    });
+                });
+            });
+        });
+    }else{
+        res.redirect("/");
+    }
+    
+});
+
+// profile-page
+app.get('/profile', (req,res)=>{
+    if(req.isAuthenticated()){
+        User.findOne({_id: req.user.id}).then((user)=>{
+            LostVehicle.find({userId: req.user.id}).then((index)=>{
+                res.render("profilepage",{
+                    user: user,
+                    lostVehicle: index,
+                    navbarTitle: "Profile"
+                });
+            });
+        });
+    }else{
+        res.redirect("/");
+    }
+});
+
+// laporan-kehilangan-page
+app.get("/laporan-kehilangan-page", (req,res)=>{
+    if(req.isAuthenticated()){
+        res.render('laporan-kehilangan-page',{navbarTitle: "Lapor Kehilangan"});
+    }else{
+        res.redirect("/");
+    }
+    
+});
+
+app.post("/laporan-kehilangan-page", upload.single('vPhoto'),(req,res)=>{
+    const selectedDate = new Date(req.body.lostTime);
+    const formattedDate = selectedDate.toLocaleDateString('id-ID', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+        }).toString();;
+
+    const lostVehicle = new LostVehicle({
+        handphoneNumber : req.body.handphoneNumber,
+        vType: req.body.vType,
+        vModel: req.body.vModel,
+        vYears: req.body.vYears,
+        vColor: req.body.vColor,
+        vNumber: req.body.vNumber,
+        vPhoto: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        },
+        lostTime: formattedDate,
+        lostLocation: req.body.lostLocation,
+        description: req.body.description,
+        userId: req.user.id
+    });
+    lostVehicle.save().then(()=>{
+        res.redirect('/success');
+    });
+});
+
+//tentang-produk-page
+app.get("/tentang-produk-page", (req,res)=>{
+    if(req.isAuthenticated()){
+            res.render("tentang-produk-page",{ navbarTitle: "Tentang RanmITS"});
+    }else{
+        res.redirect("/");
+    }
+});
+
+// success page for uploading lost vehicle document
+app.get('/success',(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render("successpage");
+    }else{
+        res.redirect("/");
+    }
+    
+});
+
+// delete lost vehicle data from profile page
+app.post('/deleteLostVehicle',(req,res)=>{
+    deletedId.push(req.body.delete); 
+    var yes = req.body.yes;
+    if(yes == "yes"){
+        LostVehicle.findOneAndDelete({_id: deletedId[deletedId.length-2]}).then((index)=>{
+            yes = "no";
+            console.log("id: "+deletedId+" has been deleted");
+            res.redirect('/profile')
+        });
+    }
+});
+
+// lost vehicle detial page
+app.get("/detail",(req,res)=>{
+    LostVehicle.findOne({_id: detailedVehicleId}).then((index)=>{
+        res.render('detailpage',{index: index, navbarTitle: "Detail Laporan"});
+    });
+    
+});
+
+app.post('/detailedVehicleId',(req,res)=>{
+    detailedVehicleId = req.body.detailedVehicleId;
+    res.redirect("/detail");
 });
 
 // register-page
 app.get('/register', (req,res)=>{
     res.render('registerpage',{navbarTitle: "Buat akun", existedEmail: existedEmail, unmatchedPassword: unmatchedPassword});
-    existedEmail = false;
     unmatchedPassword = false;
+    existedEmail = false;
 });
 
 app.post('/register', async (req,res)=> { 
-    var email = req.body.email.toLowerCase();
+    var email = req.body.username;
     var nama = req.body.nama;
     var password = req.body.password;
     var passwordConfirmation = req.body.passwordConfirmation;
-
-    if(password == passwordConfirmation){
-        await User.find().then((index)=>{
-            index.forEach((index) => {
-                if(index.email == email){
-                    existedEmail = true;
-                }
-            });
-        });
-        
-        if(existedEmail == false){
-            const user = new User({
-                email: email,
-                nama: nama,
-                password: password,
-            });
-            user.save();
-            res.redirect('/');
+    
+    User.findOne({username: email}).then((foundUser)=>{
+        if(!foundUser){
+            if(password == passwordConfirmation){
+                User.register({username: email}, password, function(err, user){
+                    if(err){
+                        console.log(err);
+                        res.redirect("/register");
+                    }else{
+                        User.updateOne({username: email},{nama: nama}).then(()=>{
+                        });
+                        passport.authenticate("local")(req,res, function(){
+                            res.redirect("/loggedIn");
+                        });
+                    }
+                });
+            }else{
+                unmatchedPassword = true;
+                res.redirect("/register");
+            }
         }else{
-            res.redirect('/register');
+            existedEmail = true;
+            res.redirect("/register");
         }
-    }else{
-        unmatchedPassword = true;
-    }
+    });
+    
+});
+
+app.get("/logout",(req,res)=>{
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        res.redirect("/");
+      });
 });
 
 app.listen(3000,()=>{
