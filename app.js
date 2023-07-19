@@ -306,6 +306,6 @@ app.get("/logout",(req,res)=>{
       });
 });
 
-app.listen(3000,()=>{
+app.listen(process.env.port,()=>{
     console.log("Running app on port 3000");
 });
