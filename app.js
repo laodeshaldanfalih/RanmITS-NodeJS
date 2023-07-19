@@ -114,7 +114,7 @@ app.post("/",(req,res)=>{
                     console.log(err);
                 } else{
                     passport.authenticate('local', {
-                        failureRedirect: '/',
+                        failureRedirect: '/incorretPassword',
                     })(req,res,(foundUser)=>{
                         id = req.user.id;
                         console.log("user successfully registered");
@@ -127,18 +127,12 @@ app.post("/",(req,res)=>{
             console.log("there is an exiting account with the same email!");
             res.redirect("/");
         }
-    });
-    
+    }); 
 });
 
-
-app.get("/loggedIn",(req,res)=>{
-    if(req.isAuthenticated()){
-        res.render("loggedIn",{userId: req.user.id});
-    }else{
-        res.redirect("/");
-    }
-    
+app.get("/incorretPassword",(req,res)=>{
+    unmatchedAccount = true;
+    res.redirect("/");
 });
 
 app.get("/home", (req,res)=>{
