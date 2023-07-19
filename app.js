@@ -107,7 +107,8 @@ app.post("/",(req,res)=>{
     });
 
     User.find({username: user.username}).then((foundUser)=>{
-        if(!foundUser){
+        if(foundUser){
+            console.log("about to regis the user...");
             req.login(user,(err)=>{
                 if(err){
                     console.log(err);
@@ -116,12 +117,14 @@ app.post("/",(req,res)=>{
                         failureRedirect: '/',
                     })(req,res,(foundUser)=>{
                         id = req.user.id;
+                        console.log("user successfully registered");
                         res.redirect("/home");
                     });
                 }
             });
         }else{
             unmatchedAccount = true;
+            console.log("there is an exiting account with the same email!");
             res.redirect("/");
         }
     });
