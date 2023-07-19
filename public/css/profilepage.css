@@ -184,6 +184,7 @@ text-align: left;
     justify-content: center;
     border: 0;
     align-items: center;
+    border-radius: 8px;
 }
 
 .warning {
